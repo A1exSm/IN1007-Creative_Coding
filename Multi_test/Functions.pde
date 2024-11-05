@@ -1,4 +1,26 @@
+// global variables
 boolean close = false;
+// methods
+int fibonacci(int f) {
+  // initliasing first 3 fibonacci numbers
+  int n = 0; // f0
+  int n1 = 1; // f1
+  int n2 = 1; // f2
+  // checking first n, n1 and n2
+  if (f == 0) {
+    return n;
+  } else if (f == 1) {
+    return n1;
+  } else if (f == 2) {
+    return n2;
+  }
+  for (int i = 0; i < f-2; i++) { // calculating finbancci numbers
+    n = n1 + n2;
+    n2 = n1;
+    n1 = n;
+  }
+  return n;
+}
 
 void notice(String text) {
   textSize(20);
