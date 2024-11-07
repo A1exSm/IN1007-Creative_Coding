@@ -1,5 +1,6 @@
 // global variables
 boolean close = false;
+boolean wFive = false;
 // methods
 int fibonacci(int f) {
   // initliasing first 3 fibonacci numbers
@@ -22,6 +23,48 @@ int fibonacci(int f) {
   return n;
 }
 
+void displayWeeks(String week) {
+  if (week.equals("five")) {
+    drawRect(10, 10, 100, 100, 200);
+    displayText("Week Five", 60, 60, 255, 20);
+}
+}
+
+void displayExercises(String week) {
+  if (week.equals("five")) {
+    drawRect(10, 110, 100, 100, 200);
+    displayText("Exercise One", 60, 160, 255, 15);
+    drawRect(10, 210, 100, 100, 200);
+    displayText("Exercise Two", 60, 260, 255, 15);
+    drawRect(10, 310, 100, 100, 200);
+    displayText("Exercise Three", 60, 360, 255, 15);
+    drawRect(10, 410, 100, 100, 200);
+    displayText("Exercise Four", 60, 460, 255, 15);
+    drawRect(10, 510, 100, 100, 200);
+    displayText("Exercise Five", 60, 560, 255, 15);
+    drawRect(10, 610, 100, 100, 200);
+    displayText("Exercise Six", 60, 660, 255, 15);
+    drawRect(10, 710, 100, 100, 200);
+    displayText("Exercise Seven", 60, 760, 255, 15);
+    drawRect(10, 810, 100, 100, 200);
+    displayText("Exercise Eight", 60, 860, 255, 15);
+  }
+}
+
+void drawRect(int x, int y, int w, int h, color c) {
+  fill(c);
+  rect(x, y, w, h);
+  noFill();
+}
+
+void displayText(String text, int x, int y, color c, int size) {
+  fill(c);
+  textSize(size);
+  textAlign(CENTER);
+  text(text, x, y);
+  noFill();
+}
+
 void notice(String text) {
   textSize(20);
   textAlign(CENTER);
@@ -30,6 +73,16 @@ void notice(String text) {
   fill(50);
   text(text, width/2, height/2);
   noFill();
+}
+
+void mousePressed() {
+  if (mouseX > 10 && mouseX < 111 && mouseY > 10 && mouseY < 111) {
+    if (!wFive){
+      wFive = true;
+    } else {
+      wFive = false;
+    }
+  }
 }
 
 void keyPressed() {
@@ -50,6 +103,10 @@ void refresh() {
     //println("Refresh skipped");
   } else {
     background(150);
+    displayWeeks("five");
+    if (wFive) {
+      displayExercises("five");
+    }
   }
 }
 // Method that properly closes the programme by closing the scanner.

@@ -38,9 +38,10 @@ public class WeekFive {
         return 4*weekThree.inputInt("Please enter a integer: ") + 5;
     }
 
-    private void exerciseOne() {
+    private int exerciseOne() {
         // displays the result of 4 × n + 5.
-        System.out.println(localParam());
+        //System.out.println(localParam());
+        return localParam();
     }
     private int arithmeticMean(int... a) {
         int sum = 0;
