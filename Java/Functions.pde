@@ -1,6 +1,12 @@
 // global variables
 boolean close = false;
 boolean wFive = false;
+boolean[] five = {false, false, false, false, false, false, false, false};
+String[] wFiveE = {
+  String.valueOf(weekFive.exerciseOne(5)),
+  String.valueOf(weekFive.exerciseTwo(10,5)),
+  String.valueOf(weekFive.exerciseThree())
+};
 // methods
 int fibonacci(int f) {
   // initliasing first 3 fibonacci numbers
@@ -27,7 +33,7 @@ void displayWeeks(String week) {
   if (week.equals("five")) {
     drawRect(10, 10, 100, 100, 200);
     displayText("Week Five", 60, 60, 255, 20);
-}
+  }
 }
 
 void displayExercises(String week) {
@@ -49,6 +55,38 @@ void displayExercises(String week) {
     drawRect(10, 810, 100, 100, 200);
     displayText("Exercise Eight", 60, 860, 255, 15);
   }
+}
+
+void weeksClickHandler() {
+  // handles week five being clicked
+  if (mouseX > 10 && mouseX < 111 && mouseY > 10 && mouseY < 111) {
+    if (!wFive) {
+      wFive = true;
+    } else {
+      wFive = false;
+    }
+  }
+  // handles exercises of weekFive being clicked... wFive first so expression checked before all others
+  if (wFive && mouseX > 10 && mouseX < 111 && mouseY > 110 && mouseY < 911) {
+    int lowerB;
+    int higherB;
+    for (int i = 0; i < five.length; i++) {
+      lowerB = ((i + 1) *100) + 10;
+      higherB = ((i + 1) *100) + 111;
+      if (mouseY > lowerB && mouseY < higherB) {
+        if (five[i]) {
+          five[i] = false;
+        } else {
+          five[i] = true;
+        }
+      }
+    }
+  }
+}
+
+void clickExercise(int num) {
+  drawRect(10, (num*100)+10, 100, 100, 200);
+  displayText(("Output: " + wFiveE[num-1]), 60, (num*100)+60, 255, 15);
 }
 
 void drawRect(int x, int y, int w, int h, color c) {
@@ -76,13 +114,7 @@ void notice(String text) {
 }
 
 void mousePressed() {
-  if (mouseX > 10 && mouseX < 111 && mouseY > 10 && mouseY < 111) {
-    if (!wFive){
-      wFive = true;
-    } else {
-      wFive = false;
-    }
-  }
+  weeksClickHandler();
 }
 
 void keyPressed() {
@@ -106,12 +138,16 @@ void refresh() {
     displayWeeks("five");
     if (wFive) {
       displayExercises("five");
+      for (int i = 0; i < five.length; i++) {
+        if (five[i]) {
+          clickExercise(i+1);
+        }
+      }
     }
   }
 }
 // Method that properly closes the programme by closing the scanner.
 // edit: scanner was removed, kept like this incase new things are implemented.
 void exit() {
-  sc.close();
   super.exit();
 }
