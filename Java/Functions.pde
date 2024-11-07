@@ -33,10 +33,10 @@ void notice(String text) {
 }
 
 void keyPressed() {
-  if (keyCode == java.awt.event.KeyEvent.VK_F1) {
+  if (keyCode == java.awt.event.KeyEvent.VK_TAB) {
     if (!close) {
       close = true;
-      notice("If you wan't to exit the programme:\nPress F1 again");
+      notice("If you wan't to exit the programme:\nPress TAB again");
     } else {
       exit();
     }
@@ -52,9 +52,9 @@ void refresh() {
     background(150);
   }
 }
-
 // Method that properly closes the programme by closing the scanner.
 // edit: scanner was removed, kept like this incase new things are implemented.
 void exit() {
+  sc.close();
   super.exit();
 }
