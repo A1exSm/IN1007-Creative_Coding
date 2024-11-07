@@ -27,7 +27,7 @@ void displayWeeks(String week) {
   if (week.equals("five")) {
     drawRect(10, 10, 100, 100, 200);
     displayText("Week Five", 60, 60, 255, 20);
-}
+  }
 }
 
 void displayExercises(String week) {
