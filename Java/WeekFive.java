@@ -1,6 +1,5 @@
 import java.util.Arrays;
 public class WeekFive {
-    public int numExercises = 8;
     //WeekThree weekThree = new WeekThree();
     
     public int localParam(int n) {

@@ -1,33 +1,33 @@
 // global variables
 boolean close = false;
 boolean wFive = false;
-boolean[] five = {false, false, false, false, false, false, false, false};
 String[] wFiveE = {
   String.valueOf(weekFive.exerciseOne(5)),
-  String.valueOf(weekFive.exerciseTwo(10,5)),
+  String.valueOf(weekFive.exerciseTwo(10, 5)),
   String.valueOf(weekFive.exerciseThree())
 };
+boolean[] five = new boolean[wFiveE.length];
 // methods
-int fibonacci(int f) {
-  // initliasing first 3 fibonacci numbers
-  int n = 0; // f0
-  int n1 = 1; // f1
-  int n2 = 1; // f2
-  // checking first n, n1 and n2
-  if (f == 0) {
-    return n;
-  } else if (f == 1) {
-    return n1;
-  } else if (f == 2) {
-    return n2;
-  }
-  for (int i = 0; i < f-2; i++) { // calculating finbancci numbers
-    n = n1 + n2;
-    n2 = n1;
-    n1 = n;
-  }
-  return n;
-}
+//public int fibonacci(int f) {
+//  // initliasing first 3 fibonacci numbers
+//  int n = 0; // f0
+//  int n1 = 1; // f1
+//  int n2 = 1; // f2
+//  // checking first n, n1 and n2
+//  if (f == 0) {
+//    return n;
+//  } else if (f == 1) {
+//    return n1;
+//  } else if (f == 2) {
+//    return n2;
+//  }
+//  for (int i = 0; i < f-2; i++) { // calculating finbancci numbers
+//    n = n1 + n2;
+//    n2 = n1;
+//    n1 = n;
+//  }
+//  return n;
+//}
 
 void displayWeeks(String week) {
   if (week.equals("five")) {
@@ -38,22 +38,10 @@ void displayWeeks(String week) {
 
 void displayExercises(String week) {
   if (week.equals("five")) {
-    drawRect(10, 110, 100, 100, 200);
-    displayText("Exercise One", 60, 160, 255, 15);
-    drawRect(10, 210, 100, 100, 200);
-    displayText("Exercise Two", 60, 260, 255, 15);
-    drawRect(10, 310, 100, 100, 200);
-    displayText("Exercise Three", 60, 360, 255, 15);
-    drawRect(10, 410, 100, 100, 200);
-    displayText("Exercise Four", 60, 460, 255, 15);
-    drawRect(10, 510, 100, 100, 200);
-    displayText("Exercise Five", 60, 560, 255, 15);
-    drawRect(10, 610, 100, 100, 200);
-    displayText("Exercise Six", 60, 660, 255, 15);
-    drawRect(10, 710, 100, 100, 200);
-    displayText("Exercise Seven", 60, 760, 255, 15);
-    drawRect(10, 810, 100, 100, 200);
-    displayText("Exercise Eight", 60, 860, 255, 15);
+    for (int i  = 1; i < five.length+1; i++) {
+      drawRect(10, (i*100)+10, 100, 100, 200);
+      displayText(("Exercise " + i), 60, (i*100)+60, 255, 15);
+    }
   }
 }
 
@@ -70,14 +58,14 @@ void weeksClickHandler() {
   if (wFive && mouseX > 10 && mouseX < 111 && mouseY > 110 && mouseY < 911) {
     int lowerB;
     int higherB;
-    for (int i = 0; i < five.length; i++) {
-      lowerB = ((i + 1) *100) + 10;
-      higherB = ((i + 1) *100) + 111;
+    for (int i = 1; i < five.length+1; i++) {
+      lowerB = (i*100) + 10;
+      higherB = (i*100) + 111;
       if (mouseY > lowerB && mouseY < higherB) {
-        if (five[i]) {
-          five[i] = false;
+        if (five[i-1]) {
+          five[i-1] = false;
         } else {
-          five[i] = true;
+          five[i-1] = true;
         }
       }
     }
