@@ -25,8 +25,18 @@ class Wave {
     beginShape();
     stroke(this.colour);
     for (float x = 0; x < width; x++) {
-      float y = height/2 + this.amp * sin((x / this.wlength) * cycles + phase);
+      float y = height/2 + this.amp * sin((x / this.wlength) * 2 * PI * cycles + phase);
       vertex(x, y);
+      /*
+      explanation for sine wave equation:
+      Standard y sine wave eq -> y = A*sin(2*pi*f*t + phase), A = amplitude, f = frequency, t = time
+        firstly, since there is no concept of time t is static thus equal to x
+        Why x? because x = the location along screen, position moves represents "time" in the programme
+        f (frequency) = is the inverse of wave length apparently so 1/wavelength, x/wavelength in this case
+        While writing this i realised my adapted eq was missing 2*pi, glad i spotted this
+      My y sine eq -> y = h/2 + A * sin((x / WL) * 2 * PI * C * P),
+        Where h = Height, A = amplitude, WL = wavelength, C = cycles, P = phase        
+      */
     }
     endShape();
     this.phase += this.speed;
