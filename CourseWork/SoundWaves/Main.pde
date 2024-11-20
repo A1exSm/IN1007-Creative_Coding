@@ -3,7 +3,7 @@ Wave[] waves;
 void setup() {
   size (800, 400);
   frameRate(100);
-  createWaves(5);
+  createWaves(2);
 }
 
 void draw() {
@@ -12,8 +12,7 @@ void draw() {
   line(0, height/2, width, height/2);
   noFill();
   for (int i = 0; i < waves.length; i++) {
-    waves[i].draw(5);
-    //waves[i].draw();
+    waves[i].draw();
   }
 }
 

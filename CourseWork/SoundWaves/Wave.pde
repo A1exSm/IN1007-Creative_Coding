@@ -44,9 +44,4 @@ class Wave {
   }
 
   // this method is to entertain me while I work on the data set :)
-  void draw(int check) {
-    this.draw();
-    checkBool(this);
-    incrementAmp(this);
-  }
 }
