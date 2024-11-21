@@ -10,11 +10,10 @@ class SongData {
     this.date = date;
     this.song = song;
     this.artist = artist;
-    this.rank = rank;
+    this.rank = rank-1;
     this.year = Integer.parseInt(date.substring(6, 10)); // dd-mm-yyyy
-    this.month = Integer.parseInt(date.substring(3, 5));
+    this.month = Integer.parseInt(date.substring(3, 5))-1;
     this.day = Integer.parseInt(date.substring(0, 2));
-    //println(this.month + ", " + this.day + ", " + year + ", " + date);
   }
   SongData() {
     this.date=null;
@@ -61,13 +60,11 @@ void setArrayLists() {
 
 void sortData() {
   setArrayLists();
-  boolean firstValue = true;
+// Populating ArrayLists
   for (SongData song : songs) {
-    if (firstValue) {
-      sortedSongs.get((-1958+song.year)).get(song.month-1).add(song.rank-1, song);
-      firstValue = false;
-    } else {
-      sortedSongs.get((-1958+song.year)).get(song.month-1).add(song.rank-1, song);
+    int yearIndex = song.year - 1958; // i.e 1959 would be at index 1
+    if (yearIndex >= 0 && yearIndex < sortedSongs.size()) {
+      sortedSongs.get(yearIndex).get(song.month).set(song.rank, song);
     }
   }
 }
