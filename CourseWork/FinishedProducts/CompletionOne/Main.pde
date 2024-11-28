@@ -20,10 +20,10 @@ void draw() {
   position[2] = constrain(position[2], 0, 14); // Ranks range from index 0 to 14, since there are 15 ranks
   // set wave to selected position
   SongData currentSong = sortedSongs.get(position[0]).get(position[1]).get(position[2]);
-    background(20);
-    stroke(255, 50);
-    line(0, height/2, width, height/2);
-    noFill();
+  background(20);
+  stroke(255, 50);
+  line(0, height/2, width, height/2);
+  noFill();
   if (currentSong.date != null) {
     currentWave = new Wave(currentSong);
     currentWave.draw();

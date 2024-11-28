@@ -60,7 +60,7 @@ void setArrayLists() {
 
 void sortData() {
   setArrayLists();
-// Populating ArrayLists
+  // Populating ArrayLists
   for (SongData song : songs) {
     int yearIndex = song.year - 1958; // i.e 1959 would be at index 1
     if (yearIndex >= 0 && yearIndex < sortedSongs.size()) {
