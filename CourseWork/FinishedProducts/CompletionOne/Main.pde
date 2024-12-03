@@ -8,12 +8,15 @@ ArrayList<SongData> songs;
 ArrayList<ArrayList<ArrayList<SongData>>> sortedSongs; // year, month, rank
 Wave currentWave;
 void setup() {
-  size(800, 400);
+  size(800, 400, P3D);
+  smooth(8);
   loadData();
   sortData();
 }
 
 void draw() {
+  background(20);
+  lights();
   // using constrain to prevent incorrect input
   position[0] = constrain(position[0], 0, 63); // Years range from index 0 to 63, ensures no bad input
   position[1] = constrain(position[1], 0, 11); // Months range from index 0 to 11 (12 months)

@@ -5,7 +5,7 @@ class Wave {
   float phaseSpeed = 0.09;
   color colour;
   SongData song;
-
+  float rotationX = 0;
   Wave(SongData song) {
     updateWave(song);
   }
@@ -41,16 +41,25 @@ class Wave {
   }
 
   void draw() {
-    //println("Current phase: " + phase);
+    pushMatrix();
+    translate(width/2, height/2, -100);
+    rotateX(rotationX);
+    rotateY(rotationX);
+    rotateZ(rotationX);
+    rotationX+=0.005;
+    strokeWeight(2);
+    noFill();
     beginShape();
     stroke(this.colour);
-    for (float x = 0; x < width; x++) {
-      float y = height/2 + this.amplitude * sin((x / this.waveLength) * 2 * PI * this.cycles + phase);
-      vertex(x, y);
+    for (float x = 0; x < width; x+=5) {
+      float y = this.amplitude * sin((x / this.waveLength) * 2 * PI * this.cycles + phase);
+      float z = sin(x*0.01 + phase) * 50;
+      vertex(x-width/2, y, z);
     }
     endShape();
+    popMatrix();
     phase+=this.phaseSpeed;
-
+    hint(DISABLE_DEPTH_TEST);
     fill(255);
     textAlign(LEFT);
     textSize(16);
@@ -65,6 +74,7 @@ class Wave {
 
     textAlign(RIGHT);
     text("SPACE & BACKSPACE: Change rank | ↑↓: Change year | ←→: Change month", width - 10, height - 20);
+    hint(ENABLE_DEPTH_TEST);
     noFill();
   }
 }
